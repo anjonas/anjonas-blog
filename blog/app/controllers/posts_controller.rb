@@ -41,10 +41,9 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
 
     if @post.save
-      redirect_to :action => :show, :id => @post.id
-    else
-      render 'new'
+      flash.notice = "You've created a post"
     end
+    respond_with(@post)
   end
 
   # PUT /posts/1
