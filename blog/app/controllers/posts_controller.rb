@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  respond_to :html
 
   http_basic_authenticate_with :name => "dhh", :password => "secret", :except => [:index, :show]
  
@@ -51,13 +52,10 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    respond_to do |format|
-      if @post.update_attributes(params[:post])
-        redirect_to :action => :show, :id => @post.id
-      else
-        render 'edit'
-      end
+    if @post.update_attributes(params[:post])
+      flash.notice = "You updated the post"
     end
+    respond_with(@post)
   end
 
   # DELETE /posts/1
