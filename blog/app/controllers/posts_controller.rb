@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
   respond_to :html
-
-  http_basic_authenticate_with :name => "dhh", :password => "secret", :except => [:index, :show]
  
   # GET /posts
   # GET /posts.json
