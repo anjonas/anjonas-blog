@@ -5,6 +5,9 @@ Blog::Application.routes.draw do
 
   resources :posts
 
+  post "login", :controller => "user_sessions", :action => "new"
+  delete "logout", :controller => "user_sessions", :action => "destroy"
+
   get "home/index"
   root :to => "home#index"
   resources :posts do
